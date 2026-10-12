@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect Advanced Portal</title>
+    <!-- ASSIGNMENT 1 & 2: External CSS Stylesheet Linking -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+
+    <!-- ==========================================================================
+         ASSIGNMENT 1 & 2: Semantic HTML5 Layout (Header, Theme Toggle & Navigation)
+         ========================================================================== -->
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>CampusConnect</h1>
+                <p>Enterprise Institutional Management & Admin Portal</p>
+            </div>
+            <button id="themeToggleBtn" class="btn-theme">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#students">Student Results & Admin Lookup</a>
+        <a href="#employees">Employee Registration & Lookup</a>
+        <a href="#expenses">Advanced Expense Tracker</a>
+    </nav>
+
+    <main>
+
+        <!-- ASSIGNMENT 1: Semantic Article/Section Structure -->
+        <section id="home" class="card">
+            <h2>Welcome to CampusConnect Advanced</h2>
+            <p>This comprehensive enterprise portal features dynamic admin lookup functionality, real-time search filters, automated academic calculations, advanced personal and institutional expense tracking, and theme customization.</p>
+        </section>
+
+        <!-- ==========================================================================
+             ASSIGNMENT 3: Student Result Management System with Admin ID/Name Search
+             ========================================================================== -->
+        <section id="students" class="card">
+            <h2>Student Result Management System</h2>
+            <p class="subtitle">Enter student scores to compute totals and percentages, or use the admin lookup search bar to filter records instantly.</p>
+
+            <form id="studentForm">
+                <input type="text" id="studentName" placeholder="Student Full Name" required>
+                <input type="text" id="studentRoll" placeholder="Roll Number / ID (e.g. 101)" required>
+                <input type="number" id="marks1" placeholder="Subject 1 Score" min="0" max="100" required>
+                <input type="number" id="marks2" placeholder="Subject 2 Score" min="0" max="100" required>
+                <input type="number" id="marks3" placeholder="Subject 3 Score" min="0" max="100" required>
+                <button type="submit">Submit Evaluation</button>
+            </form>
+
+            <div class="admin-control-bar">
+                <input type="text" id="studentSearchInput" placeholder="🔍 Admin Lookup: Search by Student Name or Roll No...">
+                <button id="exportStudentsBtn" class="btn-export">📥 Export CSV</button>
+            </div>
+
+            <div class="summary-box">
+                <h3>Top Academic Performer: <span id="topperName">None</span> (<span id="topperPercent">0</span>%)</h3>
+            </div>
+
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Roll No</th>
+                        <th>Subject 1</th>
+                        <th>Subject 2</th>
+                        <th>Subject 3</th>
+                        <th>Total Score</th>
+                        <th>Percentage</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- ==========================================================================
+             ASSIGNMENT 4: Employee Registration Portal with Admin Search & ID Lookup
+             ========================================================================== -->
+        <section id="employees" class="card">
+            <h2>Employee Management & Admin Lookup Portal</h2>
+            <p class="subtitle">Register institutional personnel and utilize the admin search bar to retrieve individual employee files by ID or Name.</p>
+
+            <form id="employeeForm">
+                <input type="text" id="empId" placeholder="Employee ID (e.g., EMP001)" required>
+                <input type="text" id="empName" placeholder="Full Name" required>
+                <input type="email" id="empEmail" placeholder="Official Email Address" required>
+                <input type="password" id="empPassword" placeholder="Password (min 6 chars)" required minlength="6">
+                <input type="tel" id="empPhone" placeholder="Contact Number (10 digits)" required pattern="[0-9]{10}">
+                <select id="empDept" required>
+                    <option value="">Select Department</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Finance & Accounts">Finance & Accounts</option>
+                    <option value="Marketing & Operations">Marketing & Operations</option>
+                </select>
+                <button type="submit">Register Personnel</button>
+            </form>
+
+            <div class="admin-control-bar">
+                <input type="text" id="employeeSearchInput" placeholder="🔍 Admin Lookup: Search by Employee ID or Name...">
+                <button id="exportEmployeesBtn" class="btn-export">📥 Export CSV</button>
+            </div>
+
+            <div id="employeeList"></div>
+        </section>
+
+        <!-- ==========================================================================
+             ADVANCED EXPENSE TRACKER: Personal/Institutional & Time-Based Analytics
+             ========================================================================== -->
+        <section id="expenses" class="card">
+            <h2>Advanced Expense & Personal Finance Tracker</h2>
+            <p class="subtitle">Track both personal and institutional expenditures, filter by timeframe (Daily, Weekly, Monthly, Yearly), and audit reports.</p>
+
+            <form id="expenseForm">
+                <input type="text" id="expTitle" placeholder="Expense Description (e.g., Grocery, Lab Kit)" required>
+                <input type="number" id="expAmount" placeholder="Amount (INR)" min="1" step="any" required>
+                <input type="date" id="expDate" required>
+                <select id="expScope" required>
+                    <option value="">Select Expense Type</option>
+                    <option value="Personal">Personal Expense</option>
+                    <option value="Institutional">Institutional Expense</option>
+                </select>
+                <select id="expCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="Food & Living">Food & Living (Personal)</option>
+                    <option value="Travel & Commute">Travel & Commute</option>
+                    <option value="Utilities & Bills">Utilities & Bills</option>
+                    <option value="Academic Equipment">Academic Equipment</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Events & Miscellaneous">Events & Miscellaneous</option>
+                </select>
+                <select id="expMethod" required>
+                    <option value="">Payment Mode</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Cash / Card">Cash / Card</option>
+                </select>
+                <button type="submit">Add Expenditure</button>
+            </form>
+
+            <!-- Timeframe Filter & Scope Control Bar -->
+            <div class="admin-control-bar">
+                <select id="timeframeFilter">
+                    <option value="ALL">All-Time Expenses</option>
+                    <option value="DAILY">Today's Expenses (Daily)</option>
+                    <option value="WEEKLY">This Week's Expenses</option>
+                    <option value="MONTHLY">This Month's Expenses</option>
+                    <option value="YEARLY">This Year's Expenses</option>
+                </select>
+                <select id="scopeFilter">
+                    <option value="ALL">Scope: All Types</option>
+                    <option value="Personal">Personal Only</option>
+                    <option value="Institutional">Institutional Only</option>
+                </select>
+                <button id="exportExpensesBtn" class="btn-export">📥 Export CSV</button>
+            </div>
+
+            <!-- Time-Based Analytics Summary Grid -->
+            <div class="analytics-grid">
+                <div class="analytic-card">
+                    <h4>Total Filtered Spent</h4>
+                    <p>₹<span id="totalExpense">0</span></p>
+                </div>
+                <div class="analytic-card">
+                    <h4>Personal Total</h4>
+                    <p>₹<span id="personalTotal">0</span></p>
+                </div>
+                <div class="analytic-card">
+                    <h4>Institutional Total</h4>
+                    <p>₹<span id="institutionalTotal">0</span></p>
+                </div>
+            </div>
+
+            <table id="expenseTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Mode</th>
+                        <th>Amount (INR)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- ASSIGNMENT 1: Semantic Footer Tag -->
+    <footer>
+        <p>CampusConnect © 2026 | Professional Academic & Enterprise Management Platform</p>
+    </footer>
+
+    <!-- ASSIGNMENT 3 & 4: External JavaScript Integration -->
+    <script src="script.js"></script>
+</body>
+</html>s
